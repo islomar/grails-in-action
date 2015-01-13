@@ -16,4 +16,13 @@ class QuoteController {
         render "<h1>Real Programmers do not eat Quiche</h1>"
     }
 
+    def random() {
+        def staticAuthor = "Anonymous"
+        def staticContent = "Real Programmers don't eat much quiche"
+
+        // This is how the controller action passes information to the view
+        // The [:] creates a Map
+        [ author: staticAuthor, content: staticContent ]
+    }
+
 }
