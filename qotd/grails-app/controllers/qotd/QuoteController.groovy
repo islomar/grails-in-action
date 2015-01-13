@@ -9,6 +9,9 @@ class QuoteController {
     // and GSP views on the fly. Check it under http://localhost:8080/qod/quote/index
     static scaffold = true
 
+    // Convention of variable names for getting the right Service
+    def quoteService
+
     //index() is the action called when the user omits the action name
     //def index() { }
 
@@ -23,16 +26,8 @@ class QuoteController {
 
     def random() {
 
-        def allQuotes = Quote.list()
-        def randomQuote
-        if (allQuotes.size() > 0) {
-            def randomIdx = new Random().nextInt(allQuotes.size())
-            randomQuote = allQuotes[randomIdx]
-        } else {
-            randomQuote = new Quote(author: "Anonymous",
-                                        content: "Real Programmers don't eat much Quiche")
-        }
-        [ quote: randomQuote]
+        def randomQuote = quoteService.getRandomQuote()
+        [ quote: randomQuote ]
     }
 
 }
