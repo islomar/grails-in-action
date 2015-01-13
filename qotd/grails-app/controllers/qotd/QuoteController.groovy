@@ -5,9 +5,14 @@ package qotd
  */
 class QuoteController {
 
+    // When Grails sees a controller marked as scaffold=true, it creates controller actions
+    // and GSP views on the fly. Check it under http://localhost:8080/qod/quote/index
+    static scaffold = true
+
     //index() is the action called when the user omits the action name
     //def index() { }
 
+    // By default, the user will be redirected to "home"; e.g. URL /qotd/quote/
     static defaultAction = "home"
 
     //This is an action
