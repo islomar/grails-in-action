@@ -27,7 +27,18 @@ class QuoteController {
     def random() {
 
         def randomQuote = quoteService.getRandomQuote()
+        // square brackets is the way the controller action passes information to the view
+        // (like request-scoped data)
         [ quote: randomQuote ]
+    }
+
+    def ajaxRandom() {
+        log.info("Request received!!")
+        def randomQuote = quoteService.getRandomQuote()
+        render {
+            q(randomQuote.content)
+            p(randomQuote.author)
+        }
     }
 
 }
