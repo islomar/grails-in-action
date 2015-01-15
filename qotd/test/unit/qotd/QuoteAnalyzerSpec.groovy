@@ -30,7 +30,7 @@ class QuoteAnalyzerSpec extends Specification {
             def quoteCount = analyzer.quoteCount
 
         then: "The number of quotes in the test list is returned"
-        quoteCount = expected
+        quoteCount == expected
 
         where:
         inputQuotes     |   expected
