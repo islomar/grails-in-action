@@ -33,7 +33,6 @@ class QuoteController {
     }
 
     def ajaxRandom() {
-        log.info("Request received!!")
         def randomQuote = quoteService.getRandomQuote()
         render {
             q(randomQuote.content)
