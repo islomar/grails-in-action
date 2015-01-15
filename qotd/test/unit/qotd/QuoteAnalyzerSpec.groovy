@@ -27,14 +27,14 @@ class QuoteAnalyzerSpec extends Specification {
             def analyzer = new QuoteAnalyzer(inputQuotes)
 
         when: "I ask for the quote count"
-            def quoteCount = analyzer.quoteCount
+            def quoteCount = analyzer.quoteCountPerAuthor
 
         then: "The number of quotes in the test list is returned"
         quoteCount == expected
 
         where:
         inputQuotes     |   expected
-            []          |       0
-            quotes      |       2
+            []          |   [:]
+            quotes      |   ["Peter Ledbrook": 1, "Glen Smith": 1]
     }
 }
