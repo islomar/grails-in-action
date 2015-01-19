@@ -77,9 +77,9 @@ class UserIntegrationSpec extends Specification {
             !user.errors.getFieldError("loginId")
     }
 
-    def "Saving a user with username like password causes an error"() {
+    def "Saving a user with loginId like password causes an error"() {
 
-        given: "A user which fails several field validations"
+        given: "A user with same loginId and password"
             def user = new User(loginId: 'islomar', password: 'islomar',
                                 homepage: 'http://www.chucknorrisfacts.com')
 
