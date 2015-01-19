@@ -75,6 +75,38 @@ class UserIntegrationSpec extends Specification {
             "url.invalid"   == user.errors.getFieldError("homepage").code
             "not-a-url"     == user.errors.getFieldError("homepage").rejectedValue
             !user.errors.getFieldError("loginId")
+    }
 
+    def "Saving a user with username like password causes an error"() {
+
+        given: "A user which fails several field validations"
+            def user = new User(loginId: 'islomar', password: 'islomar',
+                                homepage: 'http://www.chucknorrisfacts.com')
+
+        when: "The user is validated"
+            user.validate()
+
+        then:
+            user.hasErrors()
+            "validator.invalid" == user.errors.getFieldError("password").code
+            "islomar"           == user.errors.getFieldError("password").rejectedValue
+    }
+
+    def "Recovering from a failed save by fixing invalid properties"() {
+
+        given: "A user that has invalid properties"
+            def chuck = new User(loginId: 'chuck', password: 'tiny',
+                                 homepage: 'not-a-url')
+            assert chuck.save() == null
+            assert chuck.hasErrors()
+
+        when: "We fix the invalid properties"
+            chuck.password = "fistfist"
+            chuck.homepage = "http://www.chucknorrisfacts.com"
+            chuck.validate()
+
+        then: "The user saves and validates fine"
+            !chuck.hasErrors()
+            chuck.save()
     }
 }
