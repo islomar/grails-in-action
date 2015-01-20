@@ -13,8 +13,8 @@ class UserIntegrationSpec extends Specification {
     def "Saving our first user to the database"() {
 
         given: "A brand new user"
-            def joe = new User(loginId: 'joe', password: 'secret',
-                               homepage: 'http://www.grailsinaction.com')
+
+            def joe = new User(loginId: 'joe', password: 'secret')
 
         when: "the user is saved"
             joe.save()
@@ -72,8 +72,8 @@ class UserIntegrationSpec extends Specification {
             user.hasErrors()
             "size.toosmall" == user.errors.getFieldError("password").code
             "tiny"          == user.errors.getFieldError("password").rejectedValue
-            "url.invalid"   == user.errors.getFieldError("homepage").code
-            "not-a-url"     == user.errors.getFieldError("homepage").rejectedValue
+//            "url.invalid"   == user.errors.getFieldError("homepage").code
+//            "not-a-url"     == user.errors.getFieldError("homepage").rejectedValue
             !user.errors.getFieldError("loginId")
     }
 
@@ -102,7 +102,7 @@ class UserIntegrationSpec extends Specification {
 
         when: "We fix the invalid properties"
             chuck.password = "fistfist"
-            chuck.homepage = "http://www.chucknorrisfacts.com"
+//            chuck.profile.homepage = "http://www.chucknorrisfacts.com"
             chuck.validate()
 
         then: "The user saves and validates fine"
