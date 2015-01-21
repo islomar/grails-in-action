@@ -7,6 +7,7 @@ class User {
     //Convention names for date fields: dateCreated and lastUpdated
     Date dateCreated
     static hasOne = [ profile: Profile ]
+    static hasMany = [ posts: Post ]
 
     // parentheses are allowed as well to define the constraints
     static constraints = {
