@@ -8,6 +8,10 @@ class User {
     Date dateCreated
     static hasOne = [ profile: Profile ]
     static hasMany = [ posts: Post ]
+    //Configure the sort on the relationship with Post
+    static mapping = {
+        posts sort: "dateCreated"
+    }
 
     // parentheses are allowed as well to define the constraints
     static constraints = {
