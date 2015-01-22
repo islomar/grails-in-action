@@ -120,7 +120,7 @@ class UserIntegrationSpec extends Specification {
         when: "Joe follows Jane & Jill, and Jill follows Jane"
             joe.addToFollowing(joe)
             joe.addToFollowing(jill)
-            joe.addToFollowing(jane)
+            jill.addToFollowing(jane)
 
         then: "Follower counts should match following people"
             2 == joe.following.size()
