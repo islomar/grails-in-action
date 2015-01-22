@@ -18,6 +18,7 @@ hibernate {
 environments {
     development {
         dataSource {
+            // update = Leave your DB table contents alone between runs
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:h2:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
         }
