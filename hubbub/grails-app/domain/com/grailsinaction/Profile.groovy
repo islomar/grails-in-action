@@ -22,4 +22,10 @@ class Profile {
         timezone nullable: true
         jabberAddress email: true, nullable: true
     }
+
+    //Returns a diagnostic string for log messages and debugging
+    String toString() { return "Profile of $fullName (id: $id)" }
+
+    //Creates a read-only displayString property for the scaffolding (modifies the underlying scaffolding code)
+    String getDisplayString() { return fullName }
 }
