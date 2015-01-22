@@ -101,6 +101,7 @@
  			sb << ' name="' << property.name << '.id"'
  			sb << ' from="${' << property.type.name << '.list()}"'
  			sb << ' optionKey="id"'
+ 			sb << ' optionValue="displayString"'
 			if (isRequired()) sb << ' required=""'
  			sb << ' value="${' << "${domainInstance}?.${property.name}" << '?.id}"'
  			sb << ' class="many-to-one"'
