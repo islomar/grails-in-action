@@ -1,11 +1,15 @@
 import com.grailsinaction.Post
 import com.grailsinaction.Profile
 import com.grailsinaction.User
+import static java.util.Calendar.*
 
 class BootStrap {
 
     def init = { servletContext ->
         environments {
+//            if (Environment.current != Environment.DEVELOPMENT) {
+//                // Set-up reference data for non-development environments
+//            }
             development {
                 if (!Post.count()) createSampleData()
             }

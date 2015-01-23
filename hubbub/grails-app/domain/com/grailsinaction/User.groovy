@@ -24,4 +24,7 @@ class User {
 
         profile nullable: true
     }
+
+    //Creates a read-only displayString property for the scaffolding (modifies the underlying scaffolding code)
+    String getDisplayString() { return loginId }
 }
