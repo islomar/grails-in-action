@@ -15,17 +15,41 @@ class UserController {
         respond User.list(params), model:[userInstanceCount: User.count()]
     }
 
+    // http://localhost:9090/hubbub/user/search
     def search() {
 
     }
 
-    def results() {
+    def results(String loginId) {
         def users = User.where {
             loginId =~ "%${loginId}%"
         }.list()
         return [ users: users,
                 term: params.loginId,
                 totalUsers: User.count() ]
+    }
+
+
+
+    /**
+     * Example of query with optional criteria
+     *
+     * I had lots of problems, it seems that Controller action methods
+     * can NOT have default parameter values
+     *
+     * In Grails 2.0+ public controller methods are assumed to be actions,
+     * and arguments are assumed to be bindable. That means they need to be number types,
+     * boolean, String, etc., or a command object class.
+     */
+
+    private fetchUsers(String loginIdPart, Date fromDate = null) {
+
+        def users = User.where {
+            loginId =~ "%${loginIdPart}%"
+            if (fromDate) {
+                dateCreated >= fromDate
+            }
+        }.list()
     }
 
     def show(User userInstance) {
