@@ -25,4 +25,10 @@ class SignUpModule extends Module {
         acceptTermsCheckbox = true
         registerButton.click()
     }
+
+    void registerAndFinishWizard(String email, String username, String password) {
+
+        register(email, username, password)
+
+    }
 }

@@ -8,6 +8,7 @@ import geb.Page
  */
 class SignUpPage extends Page {
 
+    //FIXME Use relative URLs, e.g. url = "signup"
     static url = "https://stage.uniience.com/signup"
 
     static content = {
