@@ -6,7 +6,7 @@ import geb.spock.GebReportingSpec
  * Functional test to check that the Home page () shows the most important elements:
  * login and register form, title, h1, etc.
  */
-class HomeSpec extends GebReportingSpec{
+class HomeSpec extends GebReportingSpec {
 
 
     def "Check that the Home page shows the login and register forms"() {
