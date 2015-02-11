@@ -12,14 +12,15 @@ import spock.lang.Ignore
 class RegisterUserSpec extends GebReportingSpec {
 
 
-    def "A new user gets fails registering if password does not match criteria"() {
+    def "A new user fails registering if password does not match criteria"() {
 
         when: "We access the Home of Unience correctly"
             to HomePage
 
-        then: "We register a new user"
-            def username = generateRandomUsername()
-            signUp.register username + "@test.com", username, "patata"
+        and:  "We register a new user with a bad password"
+            registerUserWithPassword("patata")
+
+        then: "We get redirected to the SignUp page"
             waitFor {
                 at SignUpPage
             }
@@ -30,10 +31,10 @@ class RegisterUserSpec extends GebReportingSpec {
         when: "We access the Home of Unience correctly"
          to HomePage
 
-        then: "We register a new user"
-            def username = generateRandomUsername()
-            signUp.register username + "@test.com", username, "gebUserTest01"
+        and: "We register a new user with all the fields correct"
+            registerUserWithPassword("gebUserTest01")
 
+        then: "We get redirected to the wizard page"
             waitFor {
                 at WizardStepPage1
             }
@@ -45,15 +46,20 @@ class RegisterUserSpec extends GebReportingSpec {
         when: "We access the Home of Unience correctly"
             to HomePage
 
-        then: "We register a new user"
-            def username = generateRandomUsername()
-            signUp.register username + "@test.com", username, "gebUserTest01"
+        and: "We register a new user with all the fields correct"
+            registerUserWithPassword("gebUserTest01")
 
+        then: "We get redirected to the wizard page"
             waitFor {
                 at WizardStepPage1
                 //selectIndividualInvestorProfile
                 wizardStep1Form.click()
             }
+    }
+
+    private void registerUserWithPassword(password) {
+        def username = generateRandomUsername()
+        signUp.register username + "@test.com", username, password
     }
 
     private String generateRandomUsername() {
